@@ -20,24 +20,17 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # PS1 configuration
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+if [ $UID -ne 0 ]; then
+    # regular user prompt
+    PS1='\n\[\e[1;32m\]\u\[\e[0m\] at \[\e[0;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
+else
+    # root prompt
+    PS1='\n\[\e[1;31m\]\u\[\e[0m\] at \[\e[0;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \[\e[1;37m\]'
 fi
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # Alias definitions.
-if [ -f ~/.shell_aliases ]; then
-    . ~/.shell_aliases
+if [ -f ./.shell_aliases ]; then
+    source ./.shell_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
