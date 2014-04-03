@@ -28,6 +28,11 @@ else
     PS1='\n\[\e[1;31m\]\u\[\e[0m\] at \[\e[1;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \[\e[1;37m\]'
 fi
 
+# colored directories
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 # Alias definitions.
 if [ -f ./.shell_aliases ]; then
     source ./.shell_aliases
