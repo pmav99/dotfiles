@@ -22,10 +22,10 @@ HISTFILESIZE=2000
 # PS1 configuration
 if [ $UID -ne 0 ]; then
     # regular user prompt
-    PS1='\n\[\e[1;32m\]\u\[\e[0m\] at \[\e[0;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
+    PS1='\n\[\e[1;32m\]\u\[\e[0m\] at \[\e[1;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 else
     # root prompt
-    PS1='\n\[\e[1;31m\]\u\[\e[0m\] at \[\e[0;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \[\e[1;37m\]'
+    PS1='\n\[\e[1;31m\]\u\[\e[0m\] at \[\e[1;33m\]\H \[\e[0m\]in \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \[\e[1;37m\]'
 fi
 
 # Alias definitions.
