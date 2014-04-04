@@ -1,32 +1,50 @@
-#!/bin/bash
-############################
-# install.sh
-# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
-############################
+#!/usr/bin/zsh
 
 ########## Variables
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+prezto_dir=~/.prezto
+dot_dir=~/dotfiles
+old_dir=~/dotfiles_old
 
-# list of files/folders to symlink in homedir
-files="bashrc vimrc zshrc"
-
+files="bashrc vimrc zshrc zpreztorc"
 ##########
 
-# create dotfiles_old in homedir
-echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-mkdir -p $olddir
-echo "done"
+print "1. Creating $old_dir for backup of any existing dotfiles in ~ ..."
+mkdir -p $old_dir
+print "done"
 
-# change to the dotfiles directory
-echo -n "Changing to the $dir directory ..."
-cd $dir
-echo "done"
+print "5. Clone our custom repository to $dot_dir."
+git clone https://github.com/pmav99/dotfiles $dot_dir
+print "done"
+
+print "2. Cloning the prezto repository to $prezto_dir"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git $prezto_dir
+print 'done'
+
+print "3. Backup the existing prezto dotfiles in homedir to $old_dir directory"
+print "   and then create symlinks of the default prezto files from the"
+print "   prezto installation folder to ~."
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    mv ~/.${rcfile:t} ~/dotfiles_old/
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+print "done"
+
+print "4. Replace prezto dotfiles with custom version from $dir directory."
+print "   This operation will remove the default prezto files."
+files="zshrc zpreztorc"
+for file in $files; do
+    rm "~/.$file"
+    ln -s "~/.$rcfile" "$dot_dir/$rcfile"
+done
+print 'done'
+
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-for file in $files; do
-    echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
-done
+#for file in $files; do
+#echo "Moving any existing dotfiles from ~ to $old_dir"
+    #echo "Creating symlink to $file in home directory."
+    #ln -s $dir/$file ~/.$file
+#done
+
+
