@@ -166,7 +166,7 @@
     set spellfile=~/.vim/custom-dictionary.utf-8.add
 
     if version >= 700
-        set spell spelllang=en,el
+        set spell spelllang=en
     endif
 " }
 
