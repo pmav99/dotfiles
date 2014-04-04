@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 ########## Variables
-prezto_dir=~/.prezto
+prezto_dir=~/.zprezto
 dot_dir=~/dotfiles
 old_dir=~/dotfiles_old
 ##########
@@ -22,7 +22,7 @@ print "4.  Backup the existing prezto dotfiles in homedir to $old_dir directory"
 print "    and then create symlinks of the default prezto files from the"
 print "    prezto installation folder to ~."
 setopt EXTENDED_GLOB
-for filename in ~/.prezto/runcoms/^README.md(.N); do
+for filename in $prezto_dir/runcoms/^README.md(.N); do
     print "      Processing:   $filename"
     if ls ~/.${filename:t} &> /dev/null; then
         mv ~/.${filename:t} ~/dotfiles_old/
