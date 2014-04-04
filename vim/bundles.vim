@@ -24,8 +24,9 @@
     " Powerline {
         " There are essentially two options. Haven't researched yet which one is superior
         " Bundle 'bling/vim-airline'
-        Bundle 'Lokaltog/powerline'
-        set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+        Bundle 'bling/vim-airline'
+        "Bundle 'Lokaltog/powerline'
+        "set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
     " }
 
     " NerdTree - File Explorer {
