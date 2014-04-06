@@ -20,7 +20,7 @@ alias pingg='ping -c3 www.google.com'
 # Virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Prog/venvs
-source /usr/bin/virtualenvwrapper.sh
+source $(which /usr/bin/virtualenvwrapper.sh)
 
 ## Python aliases
 # Remove *.pyc recursively starting from the current directory
