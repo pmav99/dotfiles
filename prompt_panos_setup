@@ -86,15 +86,15 @@ function prompt_steeef_setup {
   zstyle ':prezto:module:python:info:virtualenv' format '(%v)'
 
   # SSH
-  if [[ $SHELL_CLIENT != '' ]]; then
-    _prompt_ssh="via %B${_prompt_colors[1]}SSH%b"
+  if [[ $SSH_CLIENT != '' ]]; then
+    _prompt_ssh=" via %B${_prompt_colors[1]}SSH%b "
   else
-    _prompt_ssh=""
+    _prompt_ssh=" "
   fi
 
   # Define prompts.
   PROMPT="
-%(!.%B${_prompt_colors[4]}%n%f%b.%B${_prompt_colors[3]}%n%f%b) at %B${_prompt_colors[2]}%m%f%b "'${_prompt_ssh}'" in ${_prompt_colors[5]}%~%f "'${vcs_info_msg_0_}'"
+%(!.%B${_prompt_colors[4]}%n%f%b.%B${_prompt_colors[3]}%n%f%b) at %B${_prompt_colors[2]}%m%f%b"'${_prompt_ssh}'"in ${_prompt_colors[5]}%~%f "'${vcs_info_msg_0_}'"
 "'$python_info[virtualenv]'"$ "
 
   RPROMPT=''
