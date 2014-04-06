@@ -53,7 +53,7 @@ done
 print "   Done\n"
 
 print "6. Install custom theme."
-cp $dot_dir/$custom_prompt $prezto_dir/modules/prompt/functions/
+ln -s $dot_dir/$custom_prompt $prezto_dir/modules/prompt/functions/
 print "   Done"
 
 print ""
