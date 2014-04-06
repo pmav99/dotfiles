@@ -31,10 +31,11 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
-  'completion' \
-  'prompt'\
   'git' \
-  'ssh'
+  'completion' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'prompt'
 
 
 #
@@ -112,7 +113,7 @@ zstyle ':prezto:module:prompt' theme 'panos'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa'
+# zstyle ':prezto:module:ssh:load' identities 'id_rsa'
 
 #
 # Syntax Highlighting
