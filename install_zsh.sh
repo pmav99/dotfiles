@@ -15,8 +15,8 @@ custom_prompt=prompt_panos_setup
 rm -rf ${prezto_dir}
 
 # download the prezto zip file
-print "1. Cloning prezto to ${prezto_zip}."
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+print "1. Cloning prezto to ${prezto_dir}."
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${prezto_dir}"
 print "   Done\n"
 
 print "2. Clone our custom repository to $dot_dir."
