@@ -171,7 +171,7 @@
 " }
 
 " Syntax Highlighting {
-    set synmaxcol=500           " Don't try to highlight lines longer than 120 chars.
+    set synmaxcol=150           " Don't try to highlight lines longer than 120 chars.
     autocmd BufRead,BufNewFile *.conf setf dosini
 " }
 
@@ -234,7 +234,7 @@
     set autoindent                  " indent at the same level of the previous line
 
     " Use two spaces in html files
-    autocmd FileType html,jinja,django :setlocal sw=2 ts=2 sts=2  " Two spaces for HTML files
+    autocmd FileType xml,html,jinja,django :setlocal sw=2 ts=2 sts=2  " Two spaces for HTML files
     autocmd FileType make :setlocal noexpandtab      " Do not expand tabs for makefiles
 
 
@@ -407,8 +407,8 @@ call InitializeDirectories()
     endfunction
 " }
 
-" LaTeX {
-    let g:Tex_DefaultTargetFormat='pdf'
-    let g:Tex_ViewRule_pdf='evince'
-    let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode $*'
-" }
+"" LaTeX {
+"    let g:Tex_DefaultTargetFormat='pdf'
+"    let g:Tex_ViewRule_pdf='evince'
+"    let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode $*'
+"" }
