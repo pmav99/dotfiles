@@ -2,11 +2,10 @@
 
 ########## Variables
 prezto_url="https://github.com/sorin-ionescu/prezto/archive/master.zip"
-prezto_zip=/tmp/prezto-master.zip
-prezto_tmp=/tmp/prezto-master
 prezto_dir=~/.zprezto
-dot_dir=~/dotfiles
-old_dir=~/dotfiles_old
+dot_dir=~/.dotfiles
+dot_url=https://github.com/pmav99/dotfiles
+old_dir=~/.dotfiles_old
 custom_prompt=prompt_panos_setup
 ##########
 
@@ -19,14 +18,20 @@ print "1. Cloning prezto to ${prezto_dir}."
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${prezto_dir}"
 print "   Done\n"
 
-print "2. Clone our custom repository to $dot_dir."
-git clone https://github.com/pmav99/dotfiles $dot_dir
-print "   Done\n"
+
+# clone git repo
+if [[ -d $dot_dir/.git ]]; then
+    print "2. $dot_dir exists. Pulling changes"
+    cd $dot_dir; git pull; cd
+else
+    print "2. $dot_dir does not exist. Cloning."
+    git clone $dot_url $dot_dir
+fi
+print "Done\n"
 
 print "3. Creating $old_dir for backup of any existing dotfiles in ~ ..."
 mkdir -p $old_dir
 print "   Done\n"
-
 
 print "4. Backup the existing prezto dotfiles in homedir to $old_dir directory"
 print "   and then create symlinks of the default prezto files from the"
@@ -35,7 +40,7 @@ setopt EXTENDED_GLOB
 for filename in $prezto_dir/runcoms/^README.md(.N); do
     print "       Processing: $filename"
     if ls ~/.${filename:t} &> /dev/null; then
-        mv ~/.${filename:t} ~/dotfiles_old/
+        mv ~/.${filename:t} $old_dir
     fi
     ln -s "$filename" "${ZDOTDIR:-$HOME}/.${filename:t}"
 done
