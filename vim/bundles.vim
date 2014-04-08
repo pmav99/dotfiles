@@ -72,7 +72,7 @@
 
     " Code completion {
         " https://github.com/Valloric/YouCompleteMe
-        "Bundle 'Valloric/YouCompleteMe'
+        Bundle 'Valloric/YouCompleteMe'
 
         " https://github.com/scrooloose/syntastic
         Bundle 'scrooloose/syntastic'
@@ -110,6 +110,7 @@
     " General Programming {
 
         Bundle 'sukima/xmledit'
+        Bundle 'othree/xml.vim'
         Bundle 'chase/vim-ansible-yaml'
         "Bundle 'spf13/vim-markdown'
         "Bundle 'spf13/vim-preview'

@@ -11,11 +11,13 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-CONFIGURATION_FOLDER=~/dotfiles
+CONFIGURATION_FOLDER=~/.dotfiles
+
 
 # aliases
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
+alias mmv='noglob zmv -W'
 
 # Virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
