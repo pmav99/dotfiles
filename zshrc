@@ -39,6 +39,9 @@ alias pyskel="cp $CONFIGURATION_FOLDER/templates/pyskel.py $1"
 alias pypackage="cp $CONFIGURATION_FOLDER/templates/pypackage.py $1"
 alias pytest="cp $CONFIGURATION_FOLDER/templates/pytest.py $1"
 
+# Bootstrap
+alias bootstrap="cp $CONFIGURATION_FOLDER/templates/bootstrap.html $1"
+
 # an extract command
 x() {
     local c e i
