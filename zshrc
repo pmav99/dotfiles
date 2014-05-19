@@ -28,7 +28,7 @@ source $(which virtualenvwrapper.sh)
 # Remove *.pyc recursively starting from the current directory
 alias rmpyc="find ./ -name '*.pyc' -delete"
 # Show the tree folder for python projects
-alias treepy="tree ./ -C --dirsfirst -P '*.py|*.tex|*.html'"
+alias treepy="tree ./ -C -v --dirsfirst -P '*.py|*.tex|*.html'"
 
 # Python Template files
 alias pyinit="cp $CONFIGURATION_FOLDER/templates/pyinit.py $1"
