@@ -10,7 +10,7 @@
     " }
 
     " Define location of the configuration folder {
-        let $CONFIGURATION_FOLDER="~/dotfiles"
+        let $CONFIGURATION_FOLDER="~/.dotfiles"
     " }
 
 " }
