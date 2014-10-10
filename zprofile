@@ -70,3 +70,11 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
+# Set keyboard layout switcher
+setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,gr
+
+# Start X at login
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
+
+
+

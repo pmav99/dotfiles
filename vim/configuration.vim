@@ -234,7 +234,7 @@
     set autoindent                  " indent at the same level of the previous line
 
     " Use two spaces in html files
-    autocmd FileType xml,html,jinja,django :setlocal sw=2 ts=2 sts=2  " Two spaces for HTML files
+    autocmd FileType xml,html,jinja,htmldjango :setlocal sw=2 ts=2 sts=2  " Two spaces for HTML files
     autocmd FileType make :setlocal noexpandtab      " Do not expand tabs for makefiles
 
 
