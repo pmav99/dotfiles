@@ -27,6 +27,8 @@ source $(which virtualenvwrapper.sh)
 ## Python aliases
 # Remove *.pyc recursively starting from the current directory
 alias rmpyc="find ./ -name '*.pyc' -delete"
+alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -o -name '*.log' -o -name '*.toc' -o -name '*.ist' -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.bbl' -o -name '*.blg' -o -name '*.dvi' -o -name '*.glg' -o -name '*.gls' -o -name '*.ilg' -o -name '*.ind' -o -name '*.lof' -o -name '*.lot' -o -name '*.maf' -o -name '*.mtc' -o -name '*.thm' -o -name '*.nav' -o -name '*.snm' -o -name '*.out' -o -name '*.synctex.gz' -o -name '*.mtc1' \) -delete"
+
 # Show the tree folder for python projects
 alias treepy="tree ./ -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json' -I '*__pycache__|*.pyc'"
 alias treedoc="tree ./ -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst'"
