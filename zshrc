@@ -39,11 +39,8 @@ treex() {
 
 # Python Template files
 alias pyinit="cp $CONFIGURATION_FOLDER/templates/pyinit.py $1"
-alias pylog="cp $CONFIGURATION_FOLDER/templates/pylog.py $1"
-alias pymainlog="cp $CONFIGURATION_FOLDER/templates/pymainlog.py $1"
 alias pymain="cp $CONFIGURATION_FOLDER/templates/pymain.py $1"
 alias pyskel="cp $CONFIGURATION_FOLDER/templates/pyskel.py $1"
-alias pypackage="cp $CONFIGURATION_FOLDER/templates/pypackage.py $1"
 alias pytest="cp $CONFIGURATION_FOLDER/templates/pytest.py $1"
 
 # Bootstrap
