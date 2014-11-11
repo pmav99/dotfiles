@@ -38,7 +38,6 @@ treex() {
     tree ./ -C -v --dirsfirst -P "*.$1"
 }
 
-
 # Python Template files
 alias pyinit="cp $CONFIGURATION_FOLDER/templates/pyinit.py $1"
 alias pymain="cp $CONFIGURATION_FOLDER/templates/pymain.py $1"
