@@ -2,7 +2,7 @@
 
 ########## Variables
 dot_url=https://github.com/pmav99/dotfiles
-dot_dir=~/.dotfiles
+dot_dir=$0:A:h
 old_dir=~/.dotfiles_old
 vundle_dir=~/.vim/bundle/vundle
 vundle_url=https://github.com/gmarik/vundle.git
