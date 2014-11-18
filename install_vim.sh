@@ -35,4 +35,3 @@ print "4. Clone NeoBundle"
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 
 print "Done"
-print "\nFinished.  Don't forget to run 'vim +NeoBundleInstall +qall'."
