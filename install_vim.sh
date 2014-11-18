@@ -28,7 +28,7 @@ if [[ -e ~/.vimrc ]] then
     mv ~/.vimrc $old_dir
 fi
 print "Create symlink."
-ln -s $dot_dir/vim/vimrc-linux.vim ~/.vimrc
+ln -s $dot_dir/vim/vimrc ~/.vimrc
 print "Done"
 
 print "4. Clone Vundle Vundle"
