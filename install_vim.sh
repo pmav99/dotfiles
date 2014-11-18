@@ -31,13 +31,8 @@ print "Create symlink."
 ln -s $dot_dir/vim/vimrc ~/.vimrc
 print "Done"
 
-print "4. Clone Vundle Vundle"
-if [[ -d $vundle_dir/.git ]] then
-    print "$vundle_dir exists. Pulling changes"
-    cd $vundle_dir; git pull; cd
-else
-    print "$vundle_dir does not exist. Cloning."
-    git clone $vundle_url $vundle_dir
-fi
+print "4. Clone NeoBundle"
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+
 print "Done"
-print "\nFinished.  Don't forget to run 'vim +BundleInstall +qall'."
+print "\nFinished.  Don't forget to run 'vim +NeoBundleInstall +qall'."
