@@ -3,7 +3,7 @@
 ########## Variables
 prezto_url="https://github.com/sorin-ionescu/prezto/archive/master.zip"
 prezto_dir=~/.zprezto
-dot_dir=$0:A:H
+dot_dir=$0:A:h
 dot_url=https://github.com/pmav99/dotfiles
 old_dir=~/.dotfiles_old
 custom_prompt=prompt_panos_setup
