@@ -19,10 +19,12 @@ alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
 
-# Virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Prog/venvs
-source $(which virtualenvwrapper.sh)
+# Virtualenvs
+if which virtualenvwrapper.sh &>/dev/null; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Prog/venvs
+    source $(which virtualenvwrapper.sh)
+fi
 
 ## Python aliases
 # Remove *.pyc recursively starting from the current directory
