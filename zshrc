@@ -132,3 +132,6 @@ if [[ -f /usr/bin/launch-python-vim.sh ]]; then
     alias gvim2='/usr/bin/gvim'
     alias gvim3='/opt/gvim-python3-noconflict/bin/gvim'
 fi
+
+# Append PATH
+path+=(~/.gem/ruby/[0-9\.]*/bin)
