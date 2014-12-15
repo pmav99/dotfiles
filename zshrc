@@ -11,8 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-CONFIGURATION_FOLDER=~/.dotfiles
-
+CONFIGURATION_FOLDER=$0:A:h
 
 # aliases
 alias ping8='ping -c3 8.8.8.8'
