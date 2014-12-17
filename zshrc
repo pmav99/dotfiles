@@ -135,4 +135,6 @@ if [[ -f /usr/bin/launch-python-vim.sh ]]; then
 fi
 
 # Append PATH
-path+=(~/.gem/ruby/[0-9\.]*/bin)
+if ls ~/.gem/ruby/[0-9\.]*/bin &>/dev/null; then
+    path+=(~/.gem/ruby/[0-9\.]*/bin)
+fi
