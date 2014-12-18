@@ -11,7 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-CONFIGURATION_FOLDER=$0:A:h
+DOTFILES_DIR="$HOME/.dotfiles"
 
 # aliases
 alias ping8='ping -c3 8.8.8.8'
@@ -40,13 +40,13 @@ treex() {
 }
 
 # Python Template files
-alias pyinit="cp $CONFIGURATION_FOLDER/templates/pyinit.py $1"
-alias pymain="cp $CONFIGURATION_FOLDER/templates/pymain.py $1"
-alias pyskel="cp $CONFIGURATION_FOLDER/templates/pyskel.py $1"
-alias pytest="cp $CONFIGURATION_FOLDER/templates/pytest.py $1"
+alias pyinit="cp $DOTFILES_DIR/templates/pyinit.py $1"
+alias pymain="cp $DOTFILES_DIR/templates/pymain.py $1"
+alias pyskel="cp $DOTFILES_DIR/templates/pyskel.py $1"
+alias pytest="cp $DOTFILES_DIR/templates/pytest.py $1"
 
 # Bootstrap
-alias bootstrap="cp $CONFIGURATION_FOLDER/templates/bootstrap.html $1"
+alias bootstrap="cp $DOTFILES_DIR/templates/bootstrap.html $1"
 
 # an extract command
 x() {
@@ -134,7 +134,10 @@ if [[ -f /usr/bin/launch-python-vim.sh ]]; then
     alias gvim3='/opt/gvim-python3-noconflict/bin/gvim'
 fi
 
-# Append PATH
+### Append folders to PATH
+# ruby gems
 if ls ~/.gem/ruby/[0-9\.]*/bin &>/dev/null; then
     path+=(~/.gem/ruby/[0-9\.]*/bin)
 fi
+# custom scripts
+path+=("$DOTFILES_DIR"/bin/)
