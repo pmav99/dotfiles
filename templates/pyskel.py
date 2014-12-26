@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#author: Panagiotis Mavrogiorgos
-#email: gmail, pmav99
+# author: Panagiotis Mavrogiorgos
+# email: gmail, pmav99
 
 """
 
