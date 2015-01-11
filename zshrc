@@ -10,6 +10,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# disable AUTO_CD
+unsetopt AUTO_CD
+
 # Customize to your needs...
 DOTFILES_DIR="$HOME/.dotfiles"
 
