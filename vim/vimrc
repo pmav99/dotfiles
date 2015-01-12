@@ -2,8 +2,7 @@
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 " }
 
-" aliases {
-" }
+set nocompatible               " Be iMproved
 
 " functions {
     let s:cache_dir = '~/.vim/.cache'
@@ -11,92 +10,19 @@
     function! s:get_cache_dir(suffix) "{
         return resolve(expand(s:cache_dir . '/' . a:suffix))
     endfunction "}
+" }
 
+" Plugins {
 
-    function! Preserve(command) "{
-        " preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " do the business:
-        execute a:command
-        " clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-    endfunction "}
+call plug#begin('~/.vim/plugged')
 
-    function! StripTrailingWhitespace() "{
-        call Preserve("%s/\\s\\+$//e")
-    endfunction "}
-
-    function! EnsureExists(path) "{
-        if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path))
-        endif
-    endfunction "}
-
-    function! CloseWindowOrKillBuffer() "{
-        let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
-
-        " never bdelete a nerd tree
-        if matchstr(expand("%"), 'NERD') == 'NERD'
-        wincmd c
-        return
-        endif
-
-        if number_of_windows_to_this_buffer > 1
-        wincmd c
-        else
-        bdelete
-        endif
-    endfunction "}
-
-"}
-
-" NeoBundle {
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" You can specify revision/branch/tag.
-" NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
-
-" Vimproc {
-    NeoBundle 'Shougo/vimproc.vim', {
-        \   'build' : {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'linux' : 'make',
-        \     'unix' : 'gmake',
-        \   }
-    \ }
+" Colorschemes {
+    Plug 'altercation/vim-colors-solarized'
 " }
 
 " File finders/explorers {
-    "NeoBundle 'kien/ctrlp.vim' " {
-    " }
 
-    NeoBundle 'Shougo/unite.vim' " {
-        let bundle = neobundle#get('unite.vim')
-        function! bundle.hooks.on_source(bundle)
-            call unite#filters#matcher_default#use(['matcher_fuzzy'])
-            call unite#filters#sorter_default#use(['sorter_rank'])
-            call unite#set_profile('files', 'context.Smartcase', 1)
-            call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-        endfunction
-
-
+    Plug 'Shougo/unite.vim' " {
         let g:unite_data_directory=s:get_cache_dir('unite')
         let g:unite_enable_start_insert=1
         let g:unite_source_history_yank_enable=1
@@ -149,7 +75,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
         nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
     " }
 
-    NeoBundle 'scrooloose/nerdtree' " {
+    Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
+    " {
+
         " I like to open an explorer with Ctrl + E
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 
@@ -165,11 +93,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " }
 
 " Syntax + Code completion + Static checkers {
-    NeoBundle 'davidhalter/jedi-vim' " {
+    Plug 'davidhalter/jedi-vim' " {
         let g:jedi#auto_initialization = 1
     " }
     "
-    NeoBundle 'scrooloose/syntastic' " {
+    Plug 'scrooloose/syntastic' " {
         " Change default symbols
         let g:syntastic_error_symbol = '✗'
         let g:syntastic_warning_symbol = '±'
@@ -188,6 +116,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
         "let g:syntastic_aggregate_errors = 1
         let g:syntastic_python_checkers = ['pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ]
+        let g:syntastic_javascript_checkers = ['jshint',]
         "
         "Enable this option to tell syntastic to always stick any detected errors into
         "the |location-list|: >
@@ -200,94 +129,59 @@ NeoBundleFetch 'Shougo/neobundle.vim'
     " }
 " }
 
-" Python specifics {
-    "NeoBundle 'jmcantrell/vim-virtualenv'
-    NeoBundle 'tmhedberg/SimpylFold'
-    NeoBundle 'hynek/vim-python-pep8-indent'
-
-" }
-
 " Comments {
-    NeoBundle 'scrooloose/nerdcommenter'
-    "NeoBundle 'tomtom/tcomment_vim'
-    "NeoBundle 'tpope/vim-commentary'
+    Plug 'scrooloose/nerdcommenter'
+    "Plug 'tomtom/tcomment_vim'
+    "Plug 'tpope/vim-commentary'
     "
 " }
 
 " Status line {
-    "NeoBundle 'Lokaltog/powerline'
-    NeoBundle 'bling/vim-airline'       " So much faster than Powerline! :)
+    "Plug 'Lokaltog/powerline'
+    Plug 'bling/vim-airline'       " So much faster than Powerline! :)
 " }
 
 " Undo {
-    "NeoBundle 'sjl/gundo.vim'
-    NeoBundle 'mbbill/undotree' " {
+    "Plug 'sjl/gundo.vim'
+    Plug 'mbbill/undotree' " {
         nnoremap <F5> :UndotreeToggle<cr>
     " }
 " }
 
-" Shell like utilities {
-    NeoBundle 'mileszs/ack.vim'
-    NeoBundle 'tpope/vim-eunuch'
-" }
-
-" Colorschemes {
-    NeoBundle 'altercation/vim-colors-solarized'
-" }
-
-" Version Control (Git, Mercurial) {
-    "NeoBundle 'mhinz/vim-signify'
-    NeoBundleLazy 'tpope/vim-fugitive' "{
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>
-        nnoremap <silent> <leader>gr :Gremove<CR>
-        autocmd FileType gitcommit nmap <buffer> U :Git checkout -- <C-r><C-g><CR>
-        autocmd BufReadPost fugitive://* set bufhidden=delete
-    "}
-    NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} "{
-        nnoremap <silent> <leader>gv :Gitv<CR>
-        nnoremap <silent> <leader>gV :Gitv!<CR>
-    "}
-" }
-
-" Various {
-    NeoBundle 'tpope/vim-surround'
-    NeoBundle 'tpope/vim-repeat'
-    NeoBundle 'nathanaelkane/vim-indent-guides'
-    NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-" }
-
 " Language Specifics {
-    NeoBundle 'plasticboy/vim-markdown'
-    NeoBundle 'elzr/vim-json'
-    NeoBundle 'tshirtman/vim-cython'
-    NeoBundle 'mitsuhiko/vim-jinja'
+    Plug 'plasticboy/vim-markdown',     { 'for': 'md' }
+    Plug 'elzr/vim-json',               { 'for': 'json' }
+    Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
 
-    " HTML/XML {
-        " { MatchTagAlways: A Vim plugin that always highlights the enclosing html/xml tags
-            NeoBundle 'Valloric/MatchTagAlways'
-            " configuration
-            "let g:mta_filetypes = {'html': 1, 'xhtml': 1, 'xml': 1, 'jinja': 1, 'htmldjango': 1}
-        " }
-        NeoBundle 'othree/xml.vim'
-        NeoBundle 'mattn/emmet-vim'
+    " Python specifics {
+        "Plug 'jmcantrell/vim-virtualenv',       {'for': 'python'}
+        Plug 'tmhedberg/SimpylFold',            {'for': 'python'}
+        Plug 'hynek/vim-python-pep8-indent',    {'for': 'python'}
+        Plug 'hdima/python-syntax',             {'for': 'python'}
+
+        let python_highlight_all = 1
+
     " }
+
+    " Javascript specifics {
+        Plug 'pangloss/vim-javascript',             {'for': 'javascript'}
+        Plug 'jelera/vim-javascript-syntax',        {'for': 'javascript'}
+        Plug 'wookiehangover/jshint.vim',           {'for': 'javascript'}
+    " }
+
+    " HTML/XML/CSS/LESS specific {
+        Plug 'mattn/emmet-vim/',            { 'for': ['html', 'xml'] }
+        Plug 'groenewege/vim-less',         { 'for': 'less'}
+        Plug 'ap/vim-css-color',            { 'for': ['css', 'less'] }
+        Plug 'othree/xml.vim',              { 'for': 'xml' }
+        Plug 'othree/html5.vim',            { 'for': 'html' }
+        Plug 'Valloric/MatchTagAlways',     { 'for': ['html', 'xml'] }
+    " }
+
+
 " }
 
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
+call plug#end()
 
 " }
 
@@ -371,6 +265,13 @@ NeoBundleCheck
     set scrolljump=5                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
+    set foldlevelstart=1
+    set foldmethod=indent
+
+    " Javascript specific
+    let javaScript_fold=1         " JavaScript
+    autocmd FileType javascript setlocal foldmethod=syntax
+    autocmd FileType html setlocal foldmethod=indent
 
     """ Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -705,3 +606,4 @@ call NERDTreeInitAsNeeded()
 "    let g:Tex_ViewRule_pdf='evince'
 "    let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode $*'
 "" }
+
