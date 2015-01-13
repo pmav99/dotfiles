@@ -423,8 +423,8 @@ call plug#end()
     set colorcolumn=100
     set autoindent                  " indent at the same level of the previous line
 
-    " Use two spaces in html files
-    autocmd FileType xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
+    " Use two spaces in html, javascript, css files
+    autocmd FileType javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
 
     " Do not expand tabs for makefiles
     autocmd FileType make :setlocal noexpandtab
