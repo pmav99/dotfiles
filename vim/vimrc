@@ -361,7 +361,7 @@ call plug#end()
 " }
 
 " Syntax Highlighting {
-    set synmaxcol=150           " Don't try to highlight lines longer than 120 chars.
+    set synmaxcol=250           " Don't try to highlight lines longer than 120 chars.
     autocmd BufRead,BufNewFile *.conf setf dosini
 " }
 
