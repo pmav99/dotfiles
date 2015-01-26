@@ -22,7 +22,7 @@ alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
 
 # Virtualenvs
-if which virtualenvwrapper.sh &>/dev/null; then
+if which virtualenvwrapper.sh &> /dev/null; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Prog/venvs
     source $(which virtualenvwrapper.sh)
@@ -139,7 +139,7 @@ fi
 
 ### Append folders to PATH
 # ruby gems
-if ls ~/.gem/ruby/[0-9\.]*/bin &>/dev/null; then
+if find ~/.gem -type d -name bin &> /dev/null; then
     path+=(~/.gem/ruby/[0-9\.]*/bin)
 fi
 # custom scripts
