@@ -152,7 +152,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'plasticboy/vim-markdown',     { 'for': 'md' }
     Plug 'elzr/vim-json',               { 'for': 'json' }
     Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
-    Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja2'] }
+    Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja'] }
+
     " Python specifics {
         "Plug 'jmcantrell/vim-virtualenv',       {'for': 'python'}
         Plug 'tmhedberg/SimpylFold',            {'for': 'python'}
