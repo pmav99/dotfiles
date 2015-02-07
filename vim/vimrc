@@ -153,6 +153,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'elzr/vim-json',               { 'for': 'json' }
     Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
     Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja'] }
+    Plug 'Rykka/riv.vim',               { 'for': 'rst' }
     Plug 'bserem/vim-greek-spell',      { 'for': ['rst', 'md', 'txt'] }
 
     " Python specifics {
