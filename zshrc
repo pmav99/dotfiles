@@ -94,7 +94,7 @@ export PULSE_LATENCY_MSEC=60
 # A quick httpserver. You can define the port (defaults to 8000). E.g.:
 # httpserver 8080
 httpserver() {
-    python -m SimpleHTTPServer $1 || python -m http.server $1
+    python2 -m SimpleHTTPServer $1 || python3 -m http.server $1
 }
 
 # a pretty print command. Works with xml and json.
