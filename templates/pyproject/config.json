@@ -1,0 +1,62 @@
+{
+    "logging": {
+        "version": 1,
+        "disable_existing_loggers": "True",
+        "formatters": {
+            "brief": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)-8s; %(name)-15s; %(message)s"
+            },
+            "simple": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; %(message)s"
+            },
+            "multi-process": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; [%(process)d]; %(message)s"
+            },
+            "multi-thread": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; [%(threadName)s]; %(message)s"
+            },
+            "verbose": {
+                "class": "logging.Formatter",
+                "format": "%(levelname)-8s; %(asctime)s; %(name)-15s; [%(process)d]; %(threadName)s; %(message)s"
+            },
+            "multiline": {
+                "class": "logging.Formatter",
+                "format": "thread: %(threadName)s\nLevel: %(levelname)s\nTime: %(asctime)s\nLocation: %(pathname)s:%(lineno)d\nMethod: %(funcName)s\nMessage:\n%(message)s\n"
+            }
+        },
+        "handlers": {
+            "console":{
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "simple",
+                "stream" : "ext://sys.stdout"
+            },
+            "file": {
+                "level": "INFO",
+                "class": "logging.handlers.WatchedFileHandler",
+                "formatter": "multi-process",
+                "filename": "/tmp/foo.log",
+                "mode": "a",
+                "encoding": "utf-8"
+            },
+            "smtp": {
+                "level": "ERROR",
+                "class": "logging.handlers.SMTPHandler",
+                "formatter": "multiline",
+                "mailhost": ["127.0.0.1", 25],
+                "fromaddr": "sender@example.com",
+                "toaddrs": ["recipient@example.com"],
+                "subject": "Something went wrong"
+            }
+        },
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG"
+        }
+    }
+}
+

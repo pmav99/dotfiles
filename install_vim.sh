@@ -2,7 +2,7 @@
 
 ########## Variables
 dot_url=https://github.com/pmav99/dotfiles
-dot_dir=~/.dotfiles
+dot_dir=$0:A:h
 old_dir=~/.dotfiles_old
 vundle_dir=~/.vim/bundle/vundle
 vundle_url=https://github.com/gmarik/vundle.git
@@ -28,16 +28,10 @@ if [[ -e ~/.vimrc ]] then
     mv ~/.vimrc $old_dir
 fi
 print "Create symlink."
-ln -s $dot_dir/vim/vimrc-linux.vim ~/.vimrc
+ln -s $dot_dir/vim/vimrc ~/.vimrc
 print "Done"
 
-print "4. Clone Vundle Vundle"
-if [[ -d $vundle_dir/.git ]] then
-    print "$vundle_dir exists. Pulling changes"
-    cd $vundle_dir; git pull; cd
-else
-    print "$vundle_dir does not exist. Cloning."
-    git clone $vundle_url $vundle_dir
-fi
+print "4. Clone NeoBundle"
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+
 print "Done"
-print "\nFinished.  Don't forget to run 'vim +BundleInstall +qall'."

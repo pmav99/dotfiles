@@ -2,6 +2,192 @@
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 " }
 
+set nocompatible               " Be iMproved
+
+" functions {
+    let s:cache_dir = '~/.vim/.cache'
+
+    function! s:get_cache_dir(suffix) "{
+        return resolve(expand(s:cache_dir . '/' . a:suffix))
+    endfunction "}
+" }
+
+" Plugins {
+
+call plug#begin('~/.vim/plugged')
+
+" Colorschemes {
+    Plug 'altercation/vim-colors-solarized'
+" }
+
+" File finders/explorers {
+
+    Plug 'Shougo/unite.vim' " {
+        let g:unite_data_directory=s:get_cache_dir('unite')
+        let g:unite_enable_start_insert=1
+        let g:unite_source_history_yank_enable=1
+        let g:unite_source_rec_max_cache_files=5000
+        let g:unite_prompt='» '
+
+        if executable('ag')
+            let g:unite_source_grep_command='ag'
+            let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
+            let g:unite_source_grep_recursive_opt=''
+        elseif executable('ack')
+            let g:unite_source_grep_command='ack'
+            let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
+            let g:unite_source_grep_recursive_opt=''
+        endif
+
+        function! s:unite_settings()
+            nmap <buffer> Q <plug>(unite_exit)
+            nmap <buffer> <esc> <plug>(unite_exit)
+            imap <buffer> <esc> <plug>(unite_exit)
+        endfunction
+        autocmd FileType unite call s:unite_settings()
+
+        " Unite Mappings
+        "<space><space> go to anything (files, buffers, MRU, bookmarks)
+        "<space>y select from previous yanks
+        "<space>l select line from current buffer
+        "<space>b select from current buffers
+        "<space>o select from outline of current file
+        "<space>s quick switch buffer
+        "<space>/ recursively search all files for matching text (uses ag or ack if found)
+        "
+        nmap <space> [unite]
+        nnoremap [unite] <nop>
+        "if s:is_windows
+            "nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec:! buffer file_mru bookmark<cr><c-u>
+            "nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec:!<cr><c-u>
+        "else
+            "nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+            "nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+        "endif
+        nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+        nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+        nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
+        nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+        nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+        nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+        nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+        nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+        nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+    " }
+
+    Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
+    " {
+
+        " I like to open an explorer with Ctrl + E
+        map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+
+        " Options
+        let NERDTreeShowBookmarks=1
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\~$']
+        let NERDTreeChDirMode=2
+        let NERDTreeQuitOnOpen=1
+        let NERDTreeShowHidden=1
+        let NERDTreeKeepTreeInNewTab=1
+    " }
+" }
+
+" Syntax + Code completion + Static checkers {
+    Plug 'davidhalter/jedi-vim' " {
+        let g:jedi#auto_initialization = 1
+    " }
+    "
+    Plug 'scrooloose/syntastic' " {
+        " Change default symbols
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_warning_symbol = '±'
+        let g:syntastic_style_error_symbol = '§'
+        let g:syntastic_style_warning_symbol = '~'
+        "
+        "If enabled, syntastic will do syntax checks when buffers are first loaded as
+        "well as on saving >
+        let g:syntastic_check_on_open = 1
+        "
+        "When set to 2 the cursor will jump to the first issue detected, but only if
+        "this issue is an error. >
+        let g:syntastic_auto_jump = 2
+        "
+        " Define python checkers
+
+        "let g:syntastic_aggregate_errors = 1
+        let g:syntastic_python_checkers = ['pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ]
+        let g:syntastic_javascript_checkers = ['jshint',]
+        "
+        "Enable this option to tell syntastic to always stick any detected errors into
+        "the |location-list|: >
+        let g:syntastic_always_populate_loc_list = 1
+        "let g:syntastic_auto_loc_list = 1
+        let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+        "let g:syntastic_quiet_messages = { "level": "warnings" }
+
+    " }
+" }
+
+" Comments {
+    Plug 'scrooloose/nerdcommenter'
+    "Plug 'tomtom/tcomment_vim'
+    "Plug 'tpope/vim-commentary'
+    "
+" }
+
+" Status line {
+    "Plug 'Lokaltog/powerline'
+    Plug 'bling/vim-airline'       " So much faster than Powerline! :)
+" }
+
+" Undo {
+    "Plug 'sjl/gundo.vim'
+    Plug 'mbbill/undotree' " {
+        nnoremap <F5> :UndotreeToggle<cr>
+    " }
+" }
+
+" Language Specifics {
+    Plug 'plasticboy/vim-markdown',     { 'for': 'md' }
+    Plug 'elzr/vim-json',               { 'for': 'json' }
+    Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
+    Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja'] }
+    Plug 'Rykka/riv.vim',               { 'for': 'rst' }
+    Plug 'bserem/vim-greek-spell',      { 'for': ['rst', 'md', 'txt'] }
+
+    " Python specifics {
+        "Plug 'jmcantrell/vim-virtualenv',       {'for': 'python'}
+        Plug 'tmhedberg/SimpylFold',            {'for': 'python'}
+        Plug 'hynek/vim-python-pep8-indent',    {'for': 'python'}
+        Plug 'hdima/python-syntax',             {'for': 'python'}
+
+        let python_highlight_all = 1
+
+    " }
+
+    " Javascript specifics {
+        Plug 'pangloss/vim-javascript',             {'for': 'javascript'}
+        Plug 'jelera/vim-javascript-syntax',        {'for': 'javascript'}
+        Plug 'wookiehangover/jshint.vim',           {'for': 'javascript'}
+    " }
+
+    " HTML/XML/CSS/LESS specific {
+        Plug 'mattn/emmet-vim/',            { 'for': ['html', 'xml'] }
+        Plug 'groenewege/vim-less',         { 'for': 'less'}
+        Plug 'ap/vim-css-color',            { 'for': ['css', 'less'] }
+        Plug 'othree/xml.vim',              { 'for': 'xml' }
+        Plug 'othree/html5.vim',            { 'for': 'html' }
+        Plug 'Valloric/MatchTagAlways',     { 'for': ['html', 'xml'] }
+    " }
+
+
+" }
+
+call plug#end()
+
+" }
+
 " general {
     filetype plugin indent on   " automatically detect file types.
     syntax on                   " syntax highlighting
@@ -45,7 +231,7 @@
     " Font {
         " Choose font for linux, mac and windows.
         if has("gui_gtk2")
-            set guifont=Consolas\ 10
+            set guifont=Inconsolata\ 10
         elseif has("gui_win32")
             set guifont=Consolas:h10
         end
@@ -70,7 +256,7 @@
 
             " Choose background for gvim and vim.
             if has('gui_running')
-                set background=light
+                set background=dark
             else
                 set background=dark
             endif
@@ -82,6 +268,13 @@
     set scrolljump=5                " lines to scroll when cursor leaves screen
     set scrolloff=3                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
+    set foldlevelstart=1
+    set foldmethod=indent
+
+    " Javascript specific
+    let javaScript_fold=1         " JavaScript
+    autocmd FileType javascript setlocal foldmethod=syntax
+    autocmd FileType html setlocal foldmethod=indent
 
     """ Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -93,7 +286,7 @@
     nmap <leader>f6 :set foldlevel=6<CR>
     nmap <leader>f7 :set foldlevel=7<CR>
     nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
+    nmap <leader>f9 :set foldlevel=99<CR>
 " }
 
 " Line Numbers {
@@ -162,16 +355,13 @@
         :set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
     " }
 
-    set dictionary=/usr/share/dict/words
-    set spellfile=~/.vim/custom-dictionary.utf-8.add
-
     if version >= 700
-        set spell spelllang=en
+        set spell spelllang=en,el
     endif
 " }
 
 " Syntax Highlighting {
-    set synmaxcol=150           " Don't try to highlight lines longer than 120 chars.
+    set synmaxcol=250           " Don't try to highlight lines longer than 120 chars.
     autocmd BufRead,BufNewFile *.conf setf dosini
 " }
 
@@ -233,9 +423,11 @@
     set colorcolumn=100
     set autoindent                  " indent at the same level of the previous line
 
-    " Use two spaces in html files
-    autocmd FileType xml,html,jinja,htmldjango :setlocal sw=2 ts=2 sts=2  " Two spaces for HTML files
-    autocmd FileType make :setlocal noexpandtab      " Do not expand tabs for makefiles
+    " Use two spaces in html, javascript, css files
+    autocmd FileType javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
+
+    " Do not expand tabs for makefiles
+    autocmd FileType make :setlocal noexpandtab
 
 
     " Wrap {
@@ -405,6 +597,8 @@ call InitializeDirectories()
             wincmd l
         endif
     endfunction
+
+call NERDTreeInitAsNeeded()
 " }
 
 "" LaTeX {
@@ -412,3 +606,4 @@ call InitializeDirectories()
 "    let g:Tex_ViewRule_pdf='evince'
 "    let g:Tex_CompileRule_pdf = 'xelatex -interaction=nonstopmode $*'
 "" }
+

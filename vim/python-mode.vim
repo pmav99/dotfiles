@@ -36,7 +36,7 @@
     let g:pymode_lint = 1
 
     " Switch pylint, pyflakes, pep8, mccabe code-checkers
-    " Can have multiply values "pylint,pep8,pyflakes,mcccabe"
+    " Can have multiply values "pylint,pep257,pep8,pyflakes,mcccabe"
     let g:pymode_lint_checker = "pylint,mccabe"
 
     " Skip errors and warnings
