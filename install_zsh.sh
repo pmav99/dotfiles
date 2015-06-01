@@ -15,7 +15,7 @@ rm -rf ${prezto_dir}
 
 # download the prezto zip file
 print "1. Cloning prezto to ${prezto_dir}."
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${prezto_dir}"
+git clone --depth 1 --recursive https://github.com/sorin-ionescu/prezto.git "${prezto_dir}"
 print "   Done\n"
 
 
