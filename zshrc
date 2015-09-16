@@ -10,6 +10,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# ZSH ONLY!!!
+# Make ls use natural sort
+alias ls="${aliases[ls]:-ls} -v"
+
 # disable AUTO_CD
 unsetopt AUTO_CD
 
