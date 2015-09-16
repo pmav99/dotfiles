@@ -27,6 +27,7 @@ alias mmv='noglob zmv -W'
 
 # Virtualenvs
 if which virtualenvwrapper.sh &> /dev/null; then
+    mkdir -p $HOME/Prog
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Prog/venvs
     source $(which virtualenvwrapper.sh)
