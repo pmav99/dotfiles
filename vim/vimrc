@@ -12,6 +12,13 @@ set nocompatible               " Be iMproved
     endfunction "}
 " }
 
+" { Leaders
+    " We have to define the leaders before the plugins, because we want
+    " to keep the plugin mappings in one place.
+    let mapleader = ','
+    let maplocalleader = '\\'
+" }
+
 " Plugins {
 
 call plug#begin('~/.vim/plugged')
@@ -211,8 +218,6 @@ call plug#end()
 " }
 
 " Basic stuff {
-    let mapleader = ','
-    let maplocalleader = '\\'
 
     " Swap ; and :  Convenient.
     " Saves typing and eliminates :W style typos due to lazy holding shift.
