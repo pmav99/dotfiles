@@ -290,16 +290,27 @@ call plug#end()
     autocmd FileType html setlocal foldmethod=indent
 
     """ Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=99<CR>
+    nnoremap <leader>f0 :set foldlevel=0<CR>
+    nnoremap <leader>f1 :set foldlevel=1<CR>
+    nnoremap <leader>f2 :set foldlevel=2<CR>
+    nnoremap <leader>f3 :set foldlevel=3<CR>
+    nnoremap <leader>f4 :set foldlevel=4<CR>
+    nnoremap <leader>f5 :set foldlevel=5<CR>
+    nnoremap <leader>f6 :set foldlevel=6<CR>
+    nnoremap <leader>f7 :set foldlevel=7<CR>
+    nnoremap <leader>f8 :set foldlevel=8<CR>
+    nnoremap <leader>f9 :set foldlevel=99<CR>
+
+    nnoremap <leader>φ0 :set foldlevel=0<CR>
+    nnoremap <leader>φ1 :set foldlevel=1<CR>
+    nnoremap <leader>φ2 :set foldlevel=2<CR>
+    nnoremap <leader>φ3 :set foldlevel=3<CR>
+    nnoremap <leader>φ4 :set foldlevel=4<CR>
+    nnoremap <leader>φ5 :set foldlevel=5<CR>
+    nnoremap <leader>φ6 :set foldlevel=6<CR>
+    nnoremap <leader>φ7 :set foldlevel=7<CR>
+    nnoremap <leader>φ8 :set foldlevel=8<CR>
+    nnoremap <leader>φ9 :set foldlevel=99<CR>
 " }
 
 " Line Numbers {
@@ -329,12 +340,12 @@ call plug#end()
 
     " Moving around {
         " Easier moving in tabs and windows
-        map <C-J> <C-W>j<C-W>_
-        map <C-K> <C-W>k<C-W>_
-        map <C-L> <C-W>l<C-W>_
-        map <C-H> <C-W>h<C-W>_
+        nnoremap <C-J> <C-W>j<C-W>_
+        nnoremap <C-K> <C-W>k<C-W>_
+        nnoremap <C-L> <C-W>l<C-W>_
+        nnoremap <C-H> <C-W>h<C-W>_
 
-        map <Leader>= <C-w>=        " Adjust viewports to the same size
+        nnoremap <Leader>= <C-w>=        " Adjust viewports to the same size
     " }
 " }
 
@@ -359,7 +370,6 @@ call plug#end()
     " Insert empty line above or below while staying in normal mode
     nnoremap <leader>o :set paste<CR>m`o<Esc>``:set nopaste<CR>
     nnoremap <leader>O :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
 " }
 
 " Languages & Spellchecking {
@@ -419,7 +429,7 @@ call plug#end()
     set matchpairs+=<:>
 
     " clear highlighted search
-    nmap <silent> <leader>/ :nohlsearch<cr>
+    nnoremap <silent> <leader>/ :nohlsearch<cr>
 
     " keep search matches in the middle of the window.
     nnoremap n nzzzv
@@ -560,9 +570,9 @@ call plug#end()
     " 'w' opens it in a new window.
     " 's' opens it in a new split.
     " 'v' opens it in a new vertical split.
-    map <leader>ew :e %%
-    map <leader>es :sp %%
-    map <leader>ev :vsp %%
+    nnoremap <leader>ew :e %%
+    nnoremap <leader>es :sp %%
+    nnoremap <leader>ev :vsp %%
 " }
 
  " Functions {
