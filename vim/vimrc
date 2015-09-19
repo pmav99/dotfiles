@@ -223,6 +223,14 @@ call plug#end()
     " Saves typing and eliminates :W style typos due to lazy holding shift.
     nnoremap ; :
 
+    " Save file (works in greek layout too!)
+    inoremap <leader>w <c-o>:w<CR>
+    inoremap <leader>ς <c-o>:w<CR>
+    nnoremap <leader>w :w
+    nnoremap <leader>ς :w
+    vnoremap <leader>w <esc>:w<CR>gv
+    vnoremap <leader>ς <esc>:w<CR>gv
+
     " map F1 (help) to esc
     inoremap <F1> <ESC>
     nnoremap <F1> <ESC>
