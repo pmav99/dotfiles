@@ -73,6 +73,7 @@ x() {
 
         case $i in
             *.tar) c=(bsdtar xvf);;
+            *.tar.bz) c=(bsdtar xvf);;
             *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
                    c=(bsdtar xvf);;
             *.7z)  c=(7z x);;

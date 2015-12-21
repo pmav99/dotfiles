@@ -347,7 +347,7 @@ call plug#end()
     nnoremap <leader>u :syntax sync fromstart<cr>:redraw!<cr>
 
     " Make new buffers to default to markdown
-    autocmd BufEnter * if &filetype == "" | setlocal ft=md | endif
+    autocmd BufEnter * if &filetype == "" | setlocal ft=markdown | endif
 
     " Reset the filetype when you saveas
     autocmd BufFilePre * set filetype&
