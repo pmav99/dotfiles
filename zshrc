@@ -24,6 +24,8 @@ DOTFILES_DIR="$HOME/.dotfiles"
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
+alias dc='docker-compose'
+alias dm='docker-machine'
 
 # Virtualenvs
 if which virtualenvwrapper.sh &> /dev/null; then
