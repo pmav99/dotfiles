@@ -149,7 +149,8 @@ call plug#begin('~/.vim/plugged')
 " }
 
 " Language Specifics {
-    Plug 'docker/docker', { 'for': ['Dockerfile', 'dockerfile', 'docker'], 'rtp': '/contrib/syntax/vim/', }
+    "Plug 'docker/docker',               { 'for': ['Dockerfile', 'dockerfile', 'docker'], 'rtp': '/contrib/syntax/vim/', }
+    Plug 'ekalinin/Dockerfile.vim',     { 'for': ['Dockerfile', 'dockerfile', 'docker'] }
     Plug 'plasticboy/vim-markdown',     { 'for': 'md' }
     Plug 'elzr/vim-json',               { 'for': 'json' }
     Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
