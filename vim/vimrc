@@ -267,9 +267,9 @@ call plug#end()
 
             " Choose background for gvim and vim.
             if has('gui_running')
-                set background=dark
+                set background=light
             else
-                set background=dark
+                set background=light
             endif
         " }
     " }
