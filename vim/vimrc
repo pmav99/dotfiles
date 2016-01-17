@@ -217,6 +217,8 @@ call plug#end()
     set fillchars=diff:⣿,vert:│
     set autowrite               " Autosave files
     set title
+    set guioptions-=m              " Do not load menu
+    set guioptions-=T              " Do not load toolbar
 " }
 
 " Basic stuff {
