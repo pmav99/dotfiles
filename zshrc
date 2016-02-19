@@ -55,6 +55,16 @@ alias pytest="cp $DOTFILES_DIR/templates/pytest.py $1"
 # Bootstrap
 alias bootstrap="cp $DOTFILES_DIR/templates/bootstrap.html $1"
 
+# Get weather on CLI!
+weather() {
+    if [ ! -z $1 ]
+    then
+        curl -4 http://wttr.in/$1
+    else
+        curl -4 http://wttr.in/Rethymno
+    fi
+}
+
 # an extract command
 x() {
     local c e i
