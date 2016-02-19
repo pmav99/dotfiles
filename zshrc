@@ -42,7 +42,7 @@ alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -
 
 # Tree aliases
 treex()   { tree ${1:-./} -C -v --dirsfirst -P "*.$1" }
-treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json' -I '*__pycache__|*.pyc' }
+treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json|*.html|*.jinja' -I '*__pycache__|*.pyc' }
 treejs()  { tree ${1:-./} -C -v --dirsfirst -P '*.html|*.css|*.js' }
 treedoc() { tree ${1:-./} -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst' }
 
