@@ -27,6 +27,9 @@ alias mmv='noglob zmv -W'
 alias dc='docker-compose'
 alias dm='docker-machine'
 
+# docker
+alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images -t'
+
 # Virtualenvs
 if which virtualenvwrapper.sh &> /dev/null; then
     mkdir -p $HOME/Prog
