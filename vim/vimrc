@@ -115,7 +115,9 @@ call plug#begin('~/.vim/plugged')
         " Define python checkers
 
         "let g:syntastic_aggregate_errors = 1
+        let g:syntastic_python_checkers = ['pyflakes', ]
         let g:syntastic_python_checkers = ['pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ]
+        let g:syntastic_python_checkers = ['pylint']
         let g:syntastic_javascript_checkers = ['jshint',]
         "
         "Enable this option to tell syntastic to always stick any detected errors into
@@ -157,6 +159,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja'] }
     Plug 'Rykka/riv.vim',               { 'for': 'rst' }
     Plug 'bserem/vim-greek-spell',      { 'for': ['rst', 'md', 'txt'] }
+    Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'c++' ] }
 
     " Python specifics {
         "Plug 'jmcantrell/vim-virtualenv',       {'for': 'python'}
@@ -242,7 +245,7 @@ call plug#end()
     " Font {
         " Choose font for linux, mac and windows.
         if has("gui_gtk2")
-            set guifont=Inconsolata\ 10
+            set guifont=Inconsolata\ 9
         elseif has("gui_win32")
             set guifont=Consolas:h10
         end
@@ -277,7 +280,7 @@ call plug#end()
 
 " Scrolling and Folding {
     set scrolljump=5                " lines to scroll when cursor leaves screen
-    set scrolloff=3                 " minimum lines to keep above and below cursor
+    set scrolloff=5                 " minimum lines to keep above and below cursor
     set foldenable                  " auto fold code
     set foldlevelstart=1
     set foldmethod=indent
@@ -443,7 +446,7 @@ call plug#end()
     set autoindent                  " indent at the same level of the previous line
 
     " Use two spaces in html, javascript, css files
-    autocmd FileType javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
+    autocmd FileType json,javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
 
     " Do not expand tabs for makefiles
     autocmd FileType make :setlocal noexpandtab

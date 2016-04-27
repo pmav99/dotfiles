@@ -21,6 +21,7 @@ unsetopt AUTO_CD
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # aliases
+alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
