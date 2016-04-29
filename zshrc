@@ -143,19 +143,6 @@ pprint() {
     return "$e"
 }
 
-# Archlinux compiles vim only with python2 support. There is no official way to have two versions
-# of vim installed (i.e. one compiled with python2 and one with python3). So, we use
-# https://aur.archlinux.org/packages/gv/gvim-python3-noconflict/
-
-if [[ -f /usr/bin/launch-python-vim.sh ]]; then
-    alias vim='/usr/bin/launch-python-vim.sh'
-    alias gvim='/usr/bin/launch-python-gvim.sh'
-    alias vim2='/usr/bin/vim'
-    alias vim3='/opt/gvim-python3-noconflict/bin/vim'
-    alias gvim2='/usr/bin/gvim'
-    alias gvim3='/opt/gvim-python3-noconflict/bin/gvim'
-fi
-
 ### Append folders to PATH
 # ruby gems
 if which ruby >/dev/null && which gem >/dev/null; then
