@@ -158,8 +158,8 @@ fi
 
 ### Append folders to PATH
 # ruby gems
-if find ~/.gem -type d -name bin &> /dev/null; then
-    path+=(~/.gem/ruby/[0-9\.]*/bin)
+if which ruby >/dev/null && which gem >/dev/null; then
+    path+=("$(ruby -rubygems -e 'puts Gem.user_dir')/bin")
 fi
 # custom scripts
 path+=("$DOTFILES_DIR"/bin/)
@@ -167,3 +167,7 @@ path+=("$DOTFILES_DIR"/bin/)
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export PIP_WHEEL_DIR=~/.wheelhouse
+export PIP_FIND_LINKS=~/.wheelhouse
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+
