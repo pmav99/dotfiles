@@ -21,9 +21,15 @@ unsetopt AUTO_CD
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # aliases
+alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
+alias dc='docker-compose'
+alias dm='docker-machine'
+
+# docker
+alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images -t'
 
 # Virtualenvs
 if which virtualenvwrapper.sh &> /dev/null; then
@@ -36,16 +42,13 @@ fi
 ## Python aliases
 # Remove *.pyc recursively starting from the current directory
 alias rmpyc="find ./ -name '*.pyc' -delete"
-alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -o -name '*.log' -o -name '*.toc' -o -name '*.ist' -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.bbl' -o -name '*.blg' -o -name '*.dvi' -o -name '*.glg' -o -name '*.gls' -o -name '*.ilg' -o -name '*.ind' -o -name '*.lof' -o -name '*.lot' -o -name '*.maf' -o -name '*.mtc' -o -name '*.thm' -o -name '*.nav' -o -name '*.snm' -o -name '*.out' -o -name '*.synctex.gz' -o -name '*.mtc1' \) -delete"
+alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -o -name '*.log' -o -name '*.toc' -o -name '*.ist' -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.bbl' -o -name '*.blg' -o -name '*.dvi' -o -name '*.glg' -o -name '*.gls' -o -name '*.ilg' -o -name '*.ind' -o -name '*.lof' -o -name '*.lot' -o -name '*.maf' -o -name '*.mtc' -o -name '*.thm' -o -name '*.nav' -o -name '*.snm' -o -name '*.out' -o -name '*.synctex.gz' -o -name '*.mtc1' -name '*.bcf' -name '*.fls' -name '*.run.xml' \) -delete"
 
-# Show the tree folder for python projects
-alias treepy="tree ./ -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json' -I '*__pycache__|*.pyc'"
-alias treedoc="tree ./ -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst'"
-alias treejs="tree ./ -C -v --dirsfirst -P '*.html|*.css|*.js'"
-
-treex() {
-    tree ./ -C -v --dirsfirst -P "*.$1"
-}
+# Tree aliases
+treex()   { tree ${1:-./} -C -v --dirsfirst -P "*.$1" }
+treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json|*.html|*.jinja' -I '*__pycache__|*.pyc' }
+treejs()  { tree ${1:-./} -C -v --dirsfirst -P '*.html|*.css|*.js' }
+treedoc() { tree ${1:-./} -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst' }
 
 # Python Template files
 alias pyinit="cp $DOTFILES_DIR/templates/pyinit.py $1"
@@ -55,6 +58,16 @@ alias pytest="cp $DOTFILES_DIR/templates/pytest.py $1"
 
 # Bootstrap
 alias bootstrap="cp $DOTFILES_DIR/templates/bootstrap.html $1"
+
+# Get weather on CLI!
+weather() {
+    if [ ! -z $1 ]
+    then
+        curl -4 http://wttr.in/$1
+    else
+        curl -4 http://wttr.in/Rethymno
+    fi
+}
 
 # an extract command
 x() {
@@ -150,3 +163,7 @@ if find ~/.gem -type d -name bin &> /dev/null; then
 fi
 # custom scripts
 path+=("$DOTFILES_DIR"/bin/)
+
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share

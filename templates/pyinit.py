@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# author: Panagiotis Mavrogiorgos
-# email: gmail, pmav99
+# module:
+# author: Panagiotis Mavrogiorgos <pmav99,gmail>
 
 """
 Package description
@@ -11,7 +11,6 @@ Package description
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import unicode_literals
 
 # Version
 __major__ = 0  # for major interface/format changes
