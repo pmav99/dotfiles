@@ -143,6 +143,14 @@ pprint() {
     return "$e"
 }
 
+myip() {
+    if which dig &> /dev/null; then
+        dig +short myip.opendns.com @resolver1.opendns.com
+    else
+        curl -s http://whatismyip.akamai.com/
+    fi
+}
+
 # Archlinux compiles vim only with python2 support. There is no official way to have two versions
 # of vim installed (i.e. one compiled with python2 and one with python3). So, we use
 # https://aur.archlinux.org/packages/gv/gvim-python3-noconflict/
