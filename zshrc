@@ -211,6 +211,11 @@ path+=$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 # added by travis gem
 [ -f /home/feanor/.travis/travis.sh ] && source /home/feanor/.travis/travis.sh
+# NTFY notifications
+if which ntfy  &> /dev/null; then
+    eval "$(ntfy shell-integration)"
+fi
+
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
