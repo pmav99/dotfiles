@@ -25,12 +25,58 @@ alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
-alias dc='docker-compose'
-alias dm='docker-machine'
 
 # docker
+alias dc='docker-compose'
+alias dm='docker-machine'
 alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images -t'
 
+dtest() {
+    if [ ! -z $1 ]
+    then
+        docker run --rm -it $1 /bin/bash
+    else
+        echo 'Please provide an image!'
+    fi
+}
+
+d14() {
+    if [ ! -z $1 ]
+    then
+        echo $@
+        docker run --rm $@ -it d14:latest
+    else
+        docker run --rm -it d14:latest
+    fi
+}
+
+d16() {
+    if [ ! -z $1 ]
+    then
+        echo $@
+        docker run --rm $@ -it ubuntu:trusty /bin/bash
+    else
+        docker run --rm -it ubuntu:trusty /bin/bash
+    fi
+}
+
+dvolume() {
+    if [ ! -z $1 ]
+    then
+        docker run --rm -v $1:/volume -it d14:latest
+    else
+        echo 'Please provide a volume!'
+    fi
+}
+
+hadolint() {
+    if [ ! -z $1 ]
+    then
+        docker run --rm -i lukasmartinelli/hadolint < $1
+    else
+        docker run --rm -i lukasmartinelli/hadolint < Dockerfile
+    fi
+}
 # Virtualenvs
 if which virtualenvwrapper.sh &> /dev/null; then
     mkdir -p $HOME/Prog
