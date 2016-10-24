@@ -198,16 +198,15 @@ mylocalip() {
 }
 
 ### Append folders to PATH
-# ruby gems
-if find ~/.gem -type d -name bin &> /dev/null; then
-    path+=(~/.gem/ruby/[0-9\.]*/bin)
-fi
 # custom scripts
 path+=("$DOTFILES_DIR/bin/")
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+
+# ruby gems
+path+=$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
 # added by travis gem
 [ -f /home/feanor/.travis/travis.sh ] && source /home/feanor/.travis/travis.sh
