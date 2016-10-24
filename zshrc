@@ -201,6 +201,10 @@ mylocalip() {
 # custom scripts
 path+=("$DOTFILES_DIR/bin/")
 
+# Texlive
+path+=("/usr/local/texlive/2016/bin/x86_64-linux")
+export INFOPATH=$INFOPATH:/usr/local/texlive/2016/texmf-dist/doc/info
+export MANPATH=$MANPATH:/usr/local/texlive/2016/texmf-dist/doc/man
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
