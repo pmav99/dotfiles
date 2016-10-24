@@ -193,6 +193,9 @@ myip() {
     fi
 }
 
+mylocalip() {
+    python -c "import socket; print(socket.gethostbyname(socket.gethostname()))"
+}
 
 ### Append folders to PATH
 # ruby gems
