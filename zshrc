@@ -77,13 +77,9 @@ hadolint() {
         docker run --rm -i lukasmartinelli/hadolint < Dockerfile
     fi
 }
-# Virtualenvs
-if which virtualenvwrapper.sh &> /dev/null; then
-    mkdir -p $HOME/Prog
-    export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/Prog/venvs
-    source $(which virtualenvwrapper.sh)
-fi
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Prog/venvs
 
 ## Python aliases
 # Remove *.pyc recursively starting from the current directory
