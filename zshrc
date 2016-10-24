@@ -219,5 +219,9 @@ fi
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export PIP_WHEEL_DIR=~/.wheelhouse
+export PIP_FIND_LINKS=~/.wheelhouse
 export JAVA_OPTS="-Xmx2048M -Xms32M"
 export GOPATH=~/Prog/go
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+
