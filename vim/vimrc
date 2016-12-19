@@ -180,6 +180,12 @@ call plug#begin('~/.vim/plugged')
     "
     " Scala {
         Plug 'derekwyatt/vim-scala',            {'for': 'scala' }
+        Plug 'ensime/ensime-vim',               {'for': 'scala' }
+
+        au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+        au FileType scala nnoremap <localleader>dfs :EnDeclarationSplit<CR>
+        au FileType scala nnoremap <localleader>dfv :EnDeclarationSplit v<CR>
+        au FileType scala nnoremap <localleader>dd :EnDocBrowse<CR>
     " }
 
     " Javascript specifics {

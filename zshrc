@@ -26,6 +26,21 @@ alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
 
+alias gtar='tar pcvzf'
+alias btar='tar pcvjSf'
+
+# Journalctl aliases
+alias jctl=journalctl
+alias jspy='jctl -f'
+
+# Systemctl aliases
+alias reload='sudo systemctl reload'
+alias restart='sudo systemctl restart'
+alias start='sudo systemctl start'
+alias sctl='sudo systemctl'
+alias status='systemctl -l status'
+alias stop='sudo systemctl stop'
+
 # docker
 alias dc='docker-compose'
 alias dm='docker-machine'
@@ -54,9 +69,9 @@ d16() {
     if [ ! -z $1 ]
     then
         echo $@
-        docker run --rm $@ -it ubuntu:trusty /bin/bash
+        docker run --rm $@ -it d16:latest
     else
-        docker run --rm -it ubuntu:trusty /bin/bash
+        docker run --rm -it d16:latest
     fi
 }
 
@@ -68,6 +83,8 @@ dvolume() {
         echo 'Please provide a volume!'
     fi
 }
+
+alias cputemp="watch -n 1 -d sensors"
 
 hadolint() {
     if [ ! -z $1 ]
@@ -82,13 +99,14 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Prog/venvs
 
 ## Python aliases
-# Remove *.pyc recursively starting from the current directory
+alias pw="pew workon"
+alias jn="jupyter notebook"
 alias rmpyc="find ./ -name '*.pyc' -delete"
 alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -o -name '*.log' -o -name '*.toc' -o -name '*.ist' -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.bbl' -o -name '*.blg' -o -name '*.dvi' -o -name '*.glg' -o -name '*.gls' -o -name '*.ilg' -o -name '*.ind' -o -name '*.lof' -o -name '*.lot' -o -name '*.maf' -o -name '*.mtc' -o -name '*.thm' -o -name '*.nav' -o -name '*.snm' -o -name '*.out' -o -name '*.synctex.gz' -o -name '*.mtc1' -name '*.bcf' -name '*.fls' -name '*.run.xml' \) -delete"
 
 # Tree aliases
 treex()   { tree ${1:-./} -C -v --dirsfirst -P "*.$1" }
-treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.conf|*.json|*.html|*.jinja' -I '*__pycache__|*.pyc' }
+treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.cfg|*.conf|*.json|*.html|*.jinja' -I '*__pycache__|*.pyc' }
 treejs()  { tree ${1:-./} -C -v --dirsfirst -P '*.html|*.css|*.js' }
 treedoc() { tree ${1:-./} -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst' }
 
@@ -195,6 +213,10 @@ myip() {
 
 mylocalip() {
     python -c "import socket; print(socket.gethostbyname(socket.gethostname()))"
+}
+
+openports() {
+    watch -n 1 -d -x sudo netstat -lntpu
 }
 
 ### Append folders to PATH
