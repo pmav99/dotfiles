@@ -28,6 +28,9 @@ alias mmv='noglob zmv -W'
 
 alias gtar='tar pcvzf'
 alias btar='tar pcvjSf'
+alias untar='tar xvf'
+alias ungtar='tar xvzf'
+alias unbtar='tar xvjf'
 
 # Journalctl aliases
 alias jctl=journalctl
