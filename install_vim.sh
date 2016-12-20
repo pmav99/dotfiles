@@ -31,7 +31,8 @@ print "Create symlink."
 ln -s $dot_dir/vim/vimrc ~/.vimrc
 print "Done"
 
-print "4. Clone NeoBundle"
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+print "4. Install vim-plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 print "Done"
