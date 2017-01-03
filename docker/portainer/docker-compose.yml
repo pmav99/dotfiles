@@ -1,0 +1,15 @@
+version: '2'
+services:
+  portainer-app:
+    image: "portainer/portainer:latest"
+    volumes:
+      - data:/data/
+      - /var/run/docker.sock:/var/run/docker.sock
+    network_mode: "bridge"
+    ports:
+      - "127.0.0.1:23456:9000"
+    restart: always
+
+volumes:
+  data:
+    driver: local
