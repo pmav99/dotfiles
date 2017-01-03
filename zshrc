@@ -64,6 +64,15 @@ dtest() {
     fi
 }
 
+dvolume() {
+    if [ ! -z $1 ]
+    then
+        docker run --rm -v $1:/volume -it u14:latest
+    else
+        echo 'Please provide a volume!'
+    fi
+}
+
 u14() {
     if [ ! -z $1 ]
     then
@@ -81,15 +90,6 @@ u16() {
         docker run --rm $@ -it u16:latest
     else
         docker run --rm -it u16:latest
-    fi
-}
-
-dvolume() {
-    if [ ! -z $1 ]
-    then
-        docker run --rm -v $1:/volume -it u14:latest
-    else
-        echo 'Please provide a volume!'
     fi
 }
 
