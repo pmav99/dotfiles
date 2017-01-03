@@ -14,6 +14,7 @@ export BROWSER='firefox'
 # Editors
 #
 export EDITOR='vim'
+export SYSTEMD_EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 

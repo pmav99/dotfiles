@@ -158,15 +158,21 @@ call plug#begin('~/.vim/plugged')
 " }
 
 " Language Specifics {
+    Plug 'bserem/vim-greek-spell'
+
     "Plug 'docker/docker',               { 'for': ['Dockerfile', 'dockerfile', 'docker'], 'rtp': '/contrib/syntax/vim/', }
     Plug 'ekalinin/Dockerfile.vim',     { 'for': ['Dockerfile', 'dockerfile', 'docker'] }
     Plug 'plasticboy/vim-markdown',     { 'for': 'md' }
     Plug 'elzr/vim-json',               { 'for': 'json' }
-    Plug 'chase/vim-ansible-yaml',      { 'for': 'yaml' }
     Plug 'icook/Vim-Jinja2-Syntax',     { 'for': ['jinja'] }
     Plug 'Rykka/riv.vim',               { 'for': 'rst' }
-    Plug 'bserem/vim-greek-spell',      { 'for': ['rst', 'md', 'txt'] }
     Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'c++' ] }
+
+    " yaml {
+        Plug 'stephpy/vim-yaml/',           { 'for': [ 'yaml', 'yml' ] }
+        Plug 'chase/vim-ansible-yaml',      { 'for': [ 'yaml', 'yml' ] }
+        Plug 'pearofducks/ansible-vim',     { 'for': [ 'yaml', 'yml' ] }
+    " }
 
     " Python specifics {
         "Plug 'jmcantrell/vim-virtualenv',       {'for': 'python'}
@@ -180,12 +186,12 @@ call plug#begin('~/.vim/plugged')
     "
     " Scala {
         Plug 'derekwyatt/vim-scala',            {'for': 'scala' }
-        Plug 'ensime/ensime-vim',               {'for': 'scala' }
+        "Plug 'ensime/ensime-vim',               {'for': 'scala' }
 
-        au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
-        au FileType scala nnoremap <localleader>dfs :EnDeclarationSplit<CR>
-        au FileType scala nnoremap <localleader>dfv :EnDeclarationSplit v<CR>
-        au FileType scala nnoremap <localleader>dd :EnDocBrowse<CR>
+        "au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+        "au FileType scala nnoremap <localleader>dfs :EnDeclarationSplit<CR>
+        "au FileType scala nnoremap <localleader>dfv :EnDeclarationSplit v<CR>
+        "au FileType scala nnoremap <localleader>dd :EnDocBrowse<CR>
     " }
 
     " Javascript specifics {
@@ -264,7 +270,8 @@ call plug#end()
     " Font {
         " Choose font for linux, mac and windows.
         if has("gui_gtk2")
-            set guifont=Inconsolata\ 9
+            set guifont=Ubuntu\ Mono\ 10
+
         elseif has("gui_win32")
             set guifont=Consolas:h10
         end
@@ -475,7 +482,7 @@ call plug#end()
     set autoindent                  " indent at the same level of the previous line
 
     " Use two spaces in html, javascript, css files
-    autocmd FileType yaml,json,javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
+    autocmd FileType yml,yaml,json,javascript,css,xml,html,jinja,xhtml,htmldjango :setlocal sw=2 ts=2 sts=2
 
     " Do not expand tabs for makefiles
     autocmd FileType make :setlocal noexpandtab

@@ -20,6 +20,12 @@ unsetopt AUTO_CD
 # Customize to your needs...
 DOTFILES_DIR="$HOME/.dotfiles"
 
+# autoenv
+AUTOENV_AUTH_FILE=~/.autoenv_authorized
+AUTOENV_ENV_FILENAME='env'
+#AUTOENV_LOWER_FIRST=''
+source '/usr/share/autoenv/activate.sh'
+
 # aliases
 alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
@@ -58,30 +64,30 @@ dtest() {
     fi
 }
 
-d14() {
+u14() {
     if [ ! -z $1 ]
     then
         echo $@
-        docker run --rm $@ -it d14:latest
+        docker run --rm $@ -it u14:latest
     else
-        docker run --rm -it d14:latest
+        docker run --rm -it u14:latest
     fi
 }
 
-d16() {
+u16() {
     if [ ! -z $1 ]
     then
         echo $@
-        docker run --rm $@ -it d16:latest
+        docker run --rm $@ -it u16:latest
     else
-        docker run --rm -it d16:latest
+        docker run --rm -it u16:latest
     fi
 }
 
 dvolume() {
     if [ ! -z $1 ]
     then
-        docker run --rm -v $1:/volume -it d14:latest
+        docker run --rm -v $1:/volume -it u14:latest
     else
         echo 'Please provide a volume!'
     fi
@@ -98,10 +104,12 @@ hadolint() {
     fi
 }
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Prog/venvs
+# aliases
+export R_LIBS="$HOME/.R"
 
 ## Python aliases
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Prog/venvs
 alias pw="pew workon"
 alias jn="jupyter notebook"
 alias rmpyc="find ./ -name '*.pyc' -delete"
