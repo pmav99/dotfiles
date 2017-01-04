@@ -126,6 +126,7 @@ alias pyinit="cp $DOTFILES_DIR/templates/pyinit.py $1"
 alias pymain="cp $DOTFILES_DIR/templates/pymain.py $1"
 alias pyskel="cp $DOTFILES_DIR/templates/pyskel.py $1"
 alias pytest="cp $DOTFILES_DIR/templates/pytest.py $1"
+alias bashskel="cp $DOTFILES_DIR/templates/bashskel.py $1"
 
 # Bootstrap
 alias bootstrap="cp $DOTFILES_DIR/templates/bootstrap.html $1"
