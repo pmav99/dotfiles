@@ -55,6 +55,16 @@ alias dc='docker-compose'
 alias dm='docker-machine'
 alias dockviz='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images -t'
 
+dcx() {
+    cmd=$2
+    cmd=${2:-/bin/bash}
+    docker-compose exec $1 $cmd
+}
+
+dcl() {
+    docker-compose logs -ft $1
+}
+
 dtest() {
     if [ ! -z $1 ]
     then
@@ -115,11 +125,27 @@ alias jn="jupyter notebook"
 alias rmpyc="find ./ -name '*.pyc' -delete"
 alias rmtex="find . -type f \( -name '*.aux' -o -name '*.glo' -o -name '*.idx' -o -name '*.log' -o -name '*.toc' -o -name '*.ist' -o -name '*.acn' -o -name '*.acr' -o -name '*.alg' -o -name '*.bbl' -o -name '*.blg' -o -name '*.dvi' -o -name '*.glg' -o -name '*.gls' -o -name '*.ilg' -o -name '*.ind' -o -name '*.lof' -o -name '*.lot' -o -name '*.maf' -o -name '*.mtc' -o -name '*.thm' -o -name '*.nav' -o -name '*.snm' -o -name '*.out' -o -name '*.synctex.gz' -o -name '*.mtc1' -name '*.bcf' -name '*.fls' -name '*.run.xml' \) -delete"
 
+# find aliases
+alias f="find ./ -name"
+if which ffind &> /dev/null; then
+    alias ff='ffind'
+fi
+
 # Tree aliases
 treex()   { tree ${1:-./} -C -v --dirsfirst -P "*.$1" }
 treepy()  { tree ${1:-./} -C -v --dirsfirst -P '*.py|*.ini|*.cfg|*.conf|*.json|*.html|*.jinja' -I '*__pycache__|*.pyc' }
 treejs()  { tree ${1:-./} -C -v --dirsfirst -P '*.html|*.css|*.js' }
-treedoc() { tree ${1:-./} -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst' }
+treedoc() { tree ${1:-./} -C -v --dirsfirst -P '*.tex|*.html|*.rest|*.md|*.rst|*.txt' }
+treegit() {
+    # A tree command that respects .gitgnore!
+    # http://unix.stackexchange.com/a/291283/37579
+    git_ignore_file=$( git config --get core.excludesfile )
+    if [[ -f "${git_ignore_file}" ]] ; then
+        tree -I"$( tr '\n' '\|' < "${git_ignore_file}" )" "${@}"
+    else
+        tree "${@}"
+    fi
+}
 
 # Python Template files
 alias pyinit="cp $DOTFILES_DIR/templates/pyinit.py $1"
