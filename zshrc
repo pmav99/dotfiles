@@ -21,10 +21,12 @@ unsetopt AUTO_CD
 DOTFILES_DIR="$HOME/.dotfiles"
 
 # autoenv
-AUTOENV_AUTH_FILE=~/.autoenv_authorized
-AUTOENV_ENV_FILENAME='env'
-#AUTOENV_LOWER_FIRST=''
-source '/usr/share/autoenv/activate.sh'
+if [ -f '/usr/share/autoenv/activate.sh' ]; then
+    AUTOENV_AUTH_FILE=~/.autoenv_authorized
+    AUTOENV_ENV_FILENAME='env'
+    #AUTOENV_LOWER_FIRST=''
+    source '/usr/share/autoenv/activate.sh'
+fi
 
 # aliases
 alias ping='ping -4'
