@@ -104,35 +104,51 @@ call plug#begin('~/.vim/plugged')
     "Plug 'davidhalter/jedi-vim' " {
         "let g:jedi#auto_initialization = 1
     "" }
-    "
-    Plug 'scrooloose/syntastic' " {
-        " Change default symbols
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_warning_symbol = '±'
-        let g:syntastic_style_error_symbol = '§'
-        let g:syntastic_style_warning_symbol = '~'
-        "
-        "If enabled, syntastic will do syntax checks when buffers are first loaded as
-        "well as on saving >
-        let g:syntastic_check_on_open = 1
-        "
-        "When set to 2 the cursor will jump to the first issue detected, but only if
-        "this issue is an error. >
-        let g:syntastic_auto_jump = 0
-        "
-        " Define python checkers
 
-        "let g:syntastic_aggregate_errors = 1
-        let g:syntastic_python_checkers = ['pyflakes', ]
-        let g:syntastic_python_checkers = ['pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ]
-        let g:syntastic_python_checkers = ['flake8']
-        let g:syntastic_javascript_checkers = ['jshint',]
-        "
-        "Enable this option to tell syntastic to always stick any detected errors into
-        "the |location-list|: >
-        let g:syntastic_always_populate_loc_list = 1
-        "let g:syntastic_auto_loc_list = 1
-        let g:syntastic_stl_format = '[%E{Err : %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+    Plug 'w0rp/ale'     " {
+        let g:ale_sign_error= '✗'
+        let g:ale_sign_warning= '±'
+
+        let g:ale_echo_msg_error_str = 'E'
+        let g:ale_echo_msg_warning_str = 'W'
+        let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+        let g:ale_sign_column_always = 1
+
+        let g:ale_linters = {
+        \   'python': [ 'pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ],
+        \   'javascript': [ 'eslint', 'jshint' ],
+        \}
+    " }
+
+    "Plug 'scrooloose/syntastic' " {
+        " Change default symbols
+        "let g:syntastic_error_symbol = '✗'
+        "let g:syntastic_warning_symbol = '±'
+        "let g:syntastic_style_error_symbol = '§'
+        "let g:syntastic_style_warning_symbol = '~'
+        ""
+        ""If enabled, syntastic will do syntax checks when buffers are first loaded as
+        ""well as on saving >
+        "let g:syntastic_check_on_open = 1
+        ""
+        ""When set to 2 the cursor will jump to the first issue detected, but only if
+        ""this issue is an error. >
+        "let g:syntastic_auto_jump = 0
+        ""
+        "" Define python checkers
+
+        ""let g:syntastic_aggregate_errors = 1
+        "let g:syntastic_python_checkers = ['pyflakes', ]
+        "let g:syntastic_python_checkers = ['pep257', 'pylint', 'pep8', 'flake8', 'pyflakes', ]
+        "let g:syntastic_python_checkers = ['flake8']
+        "let g:syntastic_javascript_checkers = ['jshint',]
+        ""
+        ""Enable this option to tell syntastic to always stick any detected errors into
+        ""the |location-list|: >
+        "let g:syntastic_always_populate_loc_list = 1
+        ""let g:syntastic_auto_loc_list = 1
+        "let g:syntastic_stl_format = '[%E{Err : %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
         "let g:syntastic_quiet_messages = { "level": "warnings" }
 
