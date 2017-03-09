@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# use string mode: http://redsymbol.net/articles/unofficial-bash-strict-mode/
+# use strict mode: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -xeuo pipefail
