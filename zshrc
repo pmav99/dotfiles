@@ -28,6 +28,12 @@ if [ -f '/usr/share/autoenv/activate.sh' ]; then
     source '/usr/share/autoenv/activate.sh'
 fi
 
+# direnv
+
+if which direnv &> /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
 # aliases
 alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
