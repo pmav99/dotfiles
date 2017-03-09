@@ -100,6 +100,8 @@ call plug#begin('~/.vim/plugged')
 " }
 
 " Syntax + Code completion + Static checkers {
+    Plug 'PProvost/vim-ps1'
+
     Plug 'Valloric/YouCompleteMe'
     "Plug 'davidhalter/jedi-vim' " {
         "let g:jedi#auto_initialization = 1
