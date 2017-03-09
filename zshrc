@@ -83,6 +83,16 @@ dtest() {
     fi
 }
 
+dexec() {
+    if [ ! -z $1 ]
+    then
+        docker exec $1 /bin/bash
+    else
+        echo 'Please provide a running container!'
+    fi
+}
+
+
 dvolume() {
     if [ ! -z $1 ]
     then
@@ -121,6 +131,18 @@ hadolint() {
     fi
 }
 
+makemine(){
+    sudo chown "${USER}":"${USER}" $@
+}
+
+update_awesome_menu() {
+    if which xdg_menu &> /dev/null; then
+        rm -rf ~/.config/awesome/archmenu.lua
+        xdg_menu --format awesome --root-menu /etc/xdg/menus/arch-applications.menu > ~/.config/awesome/archmenu.lua
+    else
+        echo "Please install xdg-menu (archlinux-xdg-menu)."
+    fi
+}
 # aliases
 export R_LIBS="$HOME/.R"
 
