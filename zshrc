@@ -45,6 +45,7 @@ alias btar='tar pcvjsf'
 alias untar='tar xvf'
 alias ungtar='tar xvzf'
 alias unbtar='tar xvjf'
+alias cputemp="watch -n 1 -d sensors"
 
 # Journalctl aliases
 alias jctl=journalctl
@@ -110,8 +111,6 @@ u16() {
         docker run --rm -it pmav99/u16:latest
     fi
 }
-
-alias cputemp="watch -n 1 -d sensors"
 
 hadolint() {
     if [ ! -z $1 ]
