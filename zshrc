@@ -35,7 +35,7 @@ alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
 
 alias gtar='tar pcvzf'
-alias btar='tar pcvjSf'
+alias btar='tar pcvjsf'
 alias untar='tar xvf'
 alias ungtar='tar xvzf'
 alias unbtar='tar xvjf'
