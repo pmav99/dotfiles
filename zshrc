@@ -151,7 +151,7 @@ bigfiles() {
     awk '{printf "%s %08.2f\t%s\n",
         index("KMG", substr($1, length($1))),
         substr($1, 0, length($1)-1), $0}' |
-    sort -r | cut -f2,3 | head -n 10
+    sort -r | cut -f2,3 | head -n $no_files
 }
 
 update_awesome_menu() {
