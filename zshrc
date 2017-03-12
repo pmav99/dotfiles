@@ -135,6 +135,25 @@ makemine(){
     sudo chown "${USER}":"${USER}" $@
 }
 
+bigfiles() {
+    if (( $# < 1 )); then
+        echo 'usage: bigfiles DIRECTORY [NO_FILES]'
+        return 1
+    fi
+    search_dir=$1
+    search_dir+='/*'
+    if [[ ! -z $2 ]]; then
+        no_files=$2
+    else
+        no_files=10
+    fi
+    du -ah ./FIB//* |
+    awk '{printf "%s %08.2f\t%s\n",
+        index("KMG", substr($1, length($1))),
+        substr($1, 0, length($1)-1), $0}' |
+    sort -r | cut -f2,3 | head -n 10
+}
+
 update_awesome_menu() {
     if which xdg_menu &> /dev/null; then
         rm -rf ~/.config/awesome/archmenu.lua
