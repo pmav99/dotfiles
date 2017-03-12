@@ -141,17 +141,12 @@ bigfiles() {
         return 1
     fi
     search_dir=$1
-    search_dir+='/*'
     if [[ ! -z $2 ]]; then
         no_files=$2
     else
         no_files=10
     fi
-    du -ah ./FIB//* |
-    awk '{printf "%s %08.2f\t%s\n",
-        index("KMG", substr($1, length($1))),
-        substr($1, 0, length($1)-1), $0}' |
-    sort -r | cut -f2,3 | head -n $no_files
+    find $search_dir -type f -exec du -ah {} + | sort -hr | head -n $no_files
 }
 
 update_awesome_menu() {
