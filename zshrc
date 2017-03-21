@@ -86,7 +86,7 @@ dtest() {
 dexec() {
     if [ ! -z $1 ]
     then
-        docker exec $1 /bin/bash
+        docker exec -it $1 /bin/bash
     else
         echo 'Please provide a running container!'
     fi
