@@ -300,6 +300,7 @@ openports() {
     watch -n 1 -d -x sudo netstat -lntpu
 }
 
+
 ### Append folders to PATH
 # custom scripts
 path+=("$DOTFILES_DIR/bin/")
@@ -319,6 +320,7 @@ if which ntfy  &> /dev/null; then
     eval "$(ntfy shell-integration)"
 fi
 
+mkdir -p ~/.wheelhouse
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
