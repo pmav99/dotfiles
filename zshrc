@@ -92,6 +92,18 @@ dexec() {
     fi
 }
 
+# docker-get-container-id
+# Give the container name and get the container's id.
+# If no name is specified, return the most recent container.
+dgc() {
+    if [ ! -z  $1 ]
+    then
+        docker ps | grep $1 | awk '{print $1}'
+    else
+        docker ps -q | head -n1
+    fi
+}
+
 
 dvolume() {
     if [ ! -z $1 ]
