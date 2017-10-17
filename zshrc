@@ -342,3 +342,7 @@ export JAVA_OPTS="-Xmx2048M -Xms32M"
 export GOPATH=~/Prog/go
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+alias vz'=vim $(fzf)'
