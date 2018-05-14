@@ -35,13 +35,12 @@ if which direnv &> /dev/null; then
 fi
 
 # aliases
-alias ping='ping -4'
 alias ping8='ping -c3 8.8.8.8'
 alias pingg='ping -c3 www.google.com'
 alias mmv='noglob zmv -W'
 
 alias gtar='tar pcvzf'
-alias btar='tar pcvjsf'
+alias btar='tar pcvjf'
 alias untar='tar xvf'
 alias ungtar='tar xvzf'
 alias unbtar='tar xvjf'
@@ -201,6 +200,7 @@ treegit() {
         tree "${@}"
     fi
 }
+alias qg='qgit --all'
 
 # Python Template files
 alias pyinit="cp $DOTFILES_DIR/templates/pyinit.py $1"
@@ -345,4 +345,4 @@ export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-alias vz'=vim $(fzf)'
+alias vz'=gvim $(fzf)'
